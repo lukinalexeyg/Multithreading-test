@@ -10,8 +10,8 @@ public:
     ElementModelItem() : m_text(""), m_locked(false) {};
     ElementModelItem(const QString &text, bool locked) : m_text(text), m_locked(locked) {};
     void set(const QString &text, bool locked) { m_text = text; m_locked = locked; };
-    QString text() { return m_text; }
-    bool locked() { return m_locked; }
+    inline QString text()   { return m_text; }
+    inline bool locked()    { return m_locked; }
 
 private:
     QString m_text;
