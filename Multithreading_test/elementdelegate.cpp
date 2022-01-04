@@ -1,6 +1,8 @@
-#include <QPainter>
 #include "elementdelegate.h"
+
 #include "elementmodel.h"
+
+#include <QPainter>
 
 
 
@@ -12,7 +14,7 @@ void ElementDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
     painter->save();
 
     if (option.state & QStyle::State_Selected) {
-        painter->setBrush(QBrush(QColor("#cce8ff")));
+        painter->setBrush(QBrush(QColor(0xcc, 0xe8, 0xff)));
         painter->fillRect(option.rect, painter->brush());
     }
 

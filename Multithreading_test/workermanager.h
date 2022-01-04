@@ -1,11 +1,11 @@
 #ifndef WORKERMANAGER_H
 #define WORKERMANAGER_H
 
-#include "worker.h"
 #include "elementlist.h"
+#include "worker.h"
 
-#define WORKERS_COUNT 3
-#define MAX_WORKERS_COUNT 100
+static constexpr int WORKERS_COUNT = 3;
+static constexpr int MAX_WORKERS_COUNT = 100;
 
 class WorkerManager : public QObject
 {
@@ -16,7 +16,7 @@ public:
     ~WorkerManager();
 
     Q_SLOT void set(int count, int duration);
-    Q_SLOT inline void reset() { set(WORKERS_COUNT, WORKER_IDLE_DURATION); }
+    Q_SLOT void reset() { set(WORKERS_COUNT, WORKER_IDLE_DURATION); }
 
     void start();
     void stop();

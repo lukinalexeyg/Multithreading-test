@@ -11,11 +11,10 @@ Element::Element(const QString &userText) :
 
 
 
-QString Element::visibleText()
+QString Element::visibleText() const
 {
     return QString("%1 %2 %3")
-            .arg(m_className)
-            .arg(m_userText)
+            .arg(m_className, m_userText)
             .arg(m_counterValue);
 }
 
@@ -23,7 +22,7 @@ QString Element::visibleText()
 
 #define ELEMENT_IMPL(n) \
     Element##n::Element##n(const QString &userText) : Element(userText) \
-    { m_className = QString(__func__); }
+    { m_className = QLatin1String(__func__); }
 
 ELEMENT_IMPL(1)
 ELEMENT_IMPL(2)

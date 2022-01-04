@@ -1,10 +1,6 @@
-QT += core gui
+QT += core widgets
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-TEMPLATE = app
-
-CONFIG += c++11
+CONFIG += c++17
 
 CONFIG(release, debug|release) {
     CONFIG += optimize_full
@@ -12,19 +8,20 @@ CONFIG(release, debug|release) {
 
 TARGET = Multithreading_test
 
-VERSION = 1.0.0
+VERSION = 1.0.1
 
 win32-msvc* {
     QMAKE_CFLAGS += /MP
     QMAKE_CXXFLAGS += /MP
+    QMAKE_CXXFLAGS += /utf-8
 }
 
 QMAKE_TARGET = $${TARGET}
 QMAKE_TARGET_PRODUCT = $${TARGET}
 QMAKE_TARGET_DESCRIPTION = "Multithreading_test"
-QMAKE_TARGET_COPYRIGHT = "Copyright (c) 2020 Alexey Lukin"
+QMAKE_TARGET_COPYRIGHT = "Copyright (c) 2021 Alexey Lukin"
 
-DEFINES += APP_PRODUCT=\\\"$$QMAKE_TARGET_PRODUCT\\\"
+DEFINES += APP_NAME=\"\\\"$$QMAKE_TARGET_PRODUCT\\\"\"
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The following define makes your compiler emit warnings if you use
@@ -36,7 +33,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
     element.cpp \
@@ -73,3 +70,13 @@ UI_DIR = ui
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+win32-msvc* {
+    QMAKE_EXTRA_TARGETS += before_build makefilehook
+    makefilehook.target = $(MAKEFILE)
+    makefilehook.depends = .beforebuild
+    PRE_TARGETDEPS += .beforebuild
+    before_build.target = .beforebuild
+    before_build.depends = FORCE
+    before_build.commands = chcp 1251
+}

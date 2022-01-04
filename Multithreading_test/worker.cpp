@@ -1,7 +1,9 @@
-#include <QTimer>
-#include <QRandomGenerator>
 #include "worker.h"
+
 #include "log.h"
+
+#include <QRandomGenerator>
+#include <QTimer>
 
 
 
@@ -29,18 +31,18 @@ void Worker::appendElement()
 {
     const int variant = QRandomGenerator::global()->bounded(3);
 
-    Element *element;
+    Element *element = nullptr;
 
     switch (variant) {
-    case 0:
-        element = new Element1;
-        break;
-    case 1:
-        element = new Element2;
-        break;
-    case 2:
-        element = new Element3;
-        break;
+        case 0:
+            element = new Element1;
+            break;
+        case 1:
+            element = new Element2;
+            break;
+        case 2:
+            element = new Element3;
+            break;
     }
 
     m_elementList->append(element);
@@ -99,15 +101,15 @@ void Worker::doAction()
     const int action = QRandomGenerator::global()->bounded(Action::Count);
 
     switch (action) {
-    case Action::AppendElement :
-        appendElement();
-        break;
-    case Action::EditElement :
-        editElement();
-        break;
-    case Action::RemoveElement :
-        removeElement();
-        break;
+        case Action::AppendElement :
+            appendElement();
+            break;
+        case Action::EditElement :
+            editElement();
+            break;
+        case Action::RemoveElement :
+            removeElement();
+            break;
     }
 }
 

@@ -1,5 +1,6 @@
-#include <QRandomGenerator>
 #include "elementlist.h"
+
+#include <QRandomGenerator>
 
 
 
@@ -18,7 +19,7 @@ ElementList::~ElementList()
 
 
 
-int ElementList::count()
+int ElementList::count() const
 {
     QMutexLocker mutexLocker(&m_mutex);
     return m_items.count();
@@ -51,6 +52,7 @@ bool ElementList::remove(Element *element)
     QMutexLocker mutexLocker(&m_mutex);
 
     const int index = _indexOf(element);
+
     return _remove(index, QThread::currentThread());
 }
 
@@ -61,6 +63,7 @@ bool ElementList::remove(UnusedElementType type)
     QMutexLocker mutexLocker(&m_mutex);
 
     const int index = unusedElementIndex(type);
+
     return _remove(index);
 }
 
@@ -97,6 +100,7 @@ Element *ElementList::get(UnusedElementType type)
     QMutexLocker mutexLocker(&m_mutex);
 
     const int index = unusedElementIndex(type);
+
     return _get(index);
 }
 
@@ -115,6 +119,7 @@ Element *ElementList::_get(int index)
     item->thread = QThread::currentThread();
 
     emit edited(index, item->element->visibleText(), true);
+
     return item->element;
 }
 
@@ -130,6 +135,7 @@ bool ElementList::set(Element *element)
 
     Item *item = m_items.at(index);
     emit edited(index, item->element->visibleText(), item->thread != nullptr);
+
     return true;
 }
 
@@ -161,7 +167,7 @@ bool ElementList::release(bool all, Element *element)
 
 
 
-int ElementList::indexOf(Element *element)
+int ElementList::indexOf(Element *element) const
 {
     QMutexLocker mutexLocker(&m_mutex);
     return _indexOf(element);
@@ -169,7 +175,7 @@ int ElementList::indexOf(Element *element)
 
 
 
-int ElementList::_indexOf(Element *element)
+int ElementList::_indexOf(Element *element) const
 {
     for (int i = 0; i < m_items.count(); ++i)
         if (m_items.at(i)->element == element)
@@ -180,7 +186,7 @@ int ElementList::_indexOf(Element *element)
 
 
 
-int ElementList::unusedElementIndex(UnusedElementType type)
+int ElementList::unusedElementIndex(UnusedElementType type) const
 {
     if (m_items.isEmpty())
         return -1;
@@ -201,5 +207,6 @@ int ElementList::unusedElementIndex(UnusedElementType type)
         return indexes.last();
 
     const int i = QRandomGenerator::global()->bounded(indexes.count());
+
     return indexes.at(i);
 }

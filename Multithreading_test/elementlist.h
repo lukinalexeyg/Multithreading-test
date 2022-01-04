@@ -1,11 +1,12 @@
 #ifndef LIST_H
 #define LIST_H
 
-#include <QObject>
-#include <QMutex>
-#include <QMap>
-#include <QThread>
 #include "element.h"
+
+#include <QMap>
+#include <QMutex>
+#include <QObject>
+#include <QThread>
 
 class ElementList : public QObject
 {
@@ -22,7 +23,7 @@ public:
     explicit ElementList(QObject *parent = nullptr);
     ~ElementList();
 
-    int count();
+    int count() const;
 
     void append(Element *element);
 
@@ -35,10 +36,10 @@ public:
 
     bool set(Element *element);
 
-    inline bool release(Element *element)   { return release(false, element); }
-    inline bool releaseAll()                { return release(true, nullptr); }
+    bool release(Element *element)  { return release(false, element); }
+    bool releaseAll()               { return release(true, nullptr); }
 
-    int indexOf(Element *element);
+    int indexOf(Element *element) const;
 
 signals:
     void appended(const QString &text);
@@ -60,8 +61,8 @@ private:
     bool _remove(int index, QThread *thread = nullptr);
     Element *_get(int index);
     bool release(bool all, Element *element);
-    int _indexOf(Element *element);
-    int unusedElementIndex(UnusedElementType type);
+    int _indexOf(Element *element) const;
+    int unusedElementIndex(UnusedElementType type) const;
 };
 
 #endif // LIST_H

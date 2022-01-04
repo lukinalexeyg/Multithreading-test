@@ -8,15 +8,15 @@ class Element
 public:
     Element(const QString &userText = QString());
 
-    inline QString className()                      { return m_className; }
+    QString className() const               { return m_className; }
 
-    inline QString userText()                       { return m_userText; }
-    inline void setUserText(const QString &text)    { m_userText = text; }
+    QString userText() const                { return m_userText; }
+    void setUserText(const QString &text)   { m_userText = text; }
 
-    inline int counterValue()                       { return m_counterValue; }
-    inline void incCounter()                        { ++m_counterValue; }
+    int counterValue() const                { return m_counterValue; }
+    void incCounter()                       { ++m_counterValue; }
 
-    QString visibleText();
+    QString visibleText() const;
 
 private:
     friend class Element1;

@@ -1,8 +1,10 @@
-#include <QMessageBox>
-#include <QRandomGenerator>
 #include "mainwindow.h"
+
 #include "ui_mainwindow.h"
 #include "ui_editelementdialog.h"
+
+#include <QMessageBox>
+#include <QRandomGenerator>
 
 
 
@@ -61,6 +63,7 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete m_elementDelegate;
+
     Worker::stopThread(m_workerManager->m_thread, 3000);
 }
 
@@ -123,10 +126,11 @@ void MainWindow::resetSettings()
 void MainWindow::appendElement()
 {
     QString userText;
-    if (execEditElementDialog("Добавление элемента", "Добавить", userText) == QDialog::Accepted) {
+
+    if (execEditElementDialog(QStringLiteral("Добавление элемента"), QStringLiteral("Добавить"), userText) == QDialog::Accepted) {
         const int variant = QRandomGenerator::global()->bounded(3);
 
-        Element *element;
+        Element *element = nullptr;
 
         switch (variant) {
         case 0:
@@ -149,7 +153,8 @@ void MainWindow::appendElement()
 void MainWindow::editElement()
 {
     QString userText;
-    if (execEditElementDialog("Редактирование элемента", "Изменить", userText) == QDialog::Accepted) {
+
+    if (execEditElementDialog(QStringLiteral("Редактирование элемента"), QStringLiteral("Изменить"), userText) == QDialog::Accepted) {
         m_selectedElement->setUserText(userText);
         m_elementList->set(m_selectedElement);
     }
@@ -167,7 +172,7 @@ bool MainWindow::execEditElementDialog(const QString &title, const QString &okBu
     if (m_selectedElement != nullptr)
         editElementDialogUi->textEdit->setText(m_selectedElement->userText());
     editElementDialogUi->buttonBox->button(QDialogButtonBox::Ok)->setText(okButtonText);
-    editElementDialogUi->buttonBox->button(QDialogButtonBox::Cancel)->setText("Отмена");
+    editElementDialogUi->buttonBox->button(QDialogButtonBox::Cancel)->setText(QStringLiteral("Отмена"));
 
     const bool dialogResult = dialog->exec();
     userText = editElementDialogUi->textEdit->toPlainText().simplified();
@@ -183,9 +188,9 @@ bool MainWindow::execEditElementDialog(const QString &title, const QString &okBu
 void MainWindow::removeElement()
 {
     QMessageBox messageBox;
-    messageBox.setWindowTitle("Удаление элемента");
+    messageBox.setWindowTitle(QStringLiteral("Удаление элемента"));
     messageBox.setIcon(QMessageBox::Question);
-    messageBox.setText("Удалить выбранный элемент из списка?");
+    messageBox.setText(QStringLiteral("Удалить выбранный элемент из списка?"));
     messageBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     messageBox.setDefaultButton(QMessageBox::Ok);
 

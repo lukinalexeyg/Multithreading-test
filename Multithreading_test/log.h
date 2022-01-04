@@ -1,10 +1,7 @@
 #ifndef LOG_H
 #define LOG_H
 
-#pragma once
-
 #include <QDebug>
-#include <QThread>
 
 #define FUNCTION_LOG Log __log__(__FUNCTION__);
 #define DEBUG_LOG qDebug().noquote() << threadIdString() << __FUNCTION__ <<

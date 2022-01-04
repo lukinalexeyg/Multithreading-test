@@ -1,11 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
+#include "elementdelegate.h"
 #include "elementlist.h"
 #include "elementmodel.h"
-#include "elementdelegate.h"
 #include "workermanager.h"
+
+#include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

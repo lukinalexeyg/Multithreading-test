@@ -72,7 +72,7 @@
        <item row="1" column="0">
         <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>Для редактирования или удаления выберите элемент. Для отмены выбора нажмите Сброс или на элемент еще раз.</string>
+          <string>Для редактирования или удаления выберите элемент. Для отмены выбора нажмите Сброс или нажмите на элемент еще раз.</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>

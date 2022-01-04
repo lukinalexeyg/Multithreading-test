@@ -3,8 +3,8 @@
 
 #include "elementlist.h"
 
-#define WORKER_IDLE_DURATION 1000
-#define MAX_WORKER_IDLE_DURATION 60000
+static constexpr int WORKER_IDLE_DURATION = 1000;
+static constexpr int MAX_WORKER_IDLE_DURATION = 60000;
 
 class Worker : public QObject
 {
@@ -13,8 +13,8 @@ class Worker : public QObject
 public:
     explicit Worker(ElementList *elementList, QObject *parent = nullptr);
     Q_SLOT void start();
-    inline void stop()                          { m_active = false; }
-    inline void setIdleDuration(int duration)   { m_idleDuration = duration; }
+    void stop()                          { m_active = false; }
+    void setIdleDuration(int duration)   { m_idleDuration = duration; }
     static void stopThread(QThread *thread, ulong time = ULONG_MAX);
 
 public:
