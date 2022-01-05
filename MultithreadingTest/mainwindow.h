@@ -26,7 +26,7 @@ private:
     ElementModel *m_elementModel;
     ElementDelegate *m_elementDelegate;
     WorkerManager *m_workerManager;
-    Element *m_selectedElement;
+    ElementPtr m_selectedElement;
 
 private:
     void onListViewPressed(const QModelIndex &index);

@@ -27,7 +27,7 @@ int ElementList::count() const
 
 
 
-void ElementList::append(Element *element)
+void ElementList::append(const ElementPtr &element)
 {
     QMutexLocker mutexLocker(&m_mutex);
 
@@ -47,7 +47,7 @@ bool ElementList::remove(int index)
 
 
 
-bool ElementList::remove(Element *element)
+bool ElementList::remove(const ElementPtr &element)
 {
     QMutexLocker mutexLocker(&m_mutex);
 
@@ -74,7 +74,7 @@ bool ElementList::_remove(int index, QThread *thread)
     if (index < 0 || index >= m_items.count())
         return false;
 
-    QThread *t = m_items.at(index)->thread;
+    const QThread *t = m_items.at(index)->thread();
 
     if (t == thread) {
         delete m_items.takeAt(index);
@@ -87,7 +87,7 @@ bool ElementList::_remove(int index, QThread *thread)
 
 
 
-Element *ElementList::get(int index)
+ElementPtr ElementList::get(int index)
 {
     QMutexLocker mutexLocker(&m_mutex);
     return _get(index);
@@ -95,7 +95,7 @@ Element *ElementList::get(int index)
 
 
 
-Element *ElementList::get(UnusedElementType type)
+ElementPtr ElementList::get(UnusedElementType type)
 {
     QMutexLocker mutexLocker(&m_mutex);
 
@@ -106,26 +106,26 @@ Element *ElementList::get(UnusedElementType type)
 
 
 
-Element *ElementList::_get(int index)
+ElementPtr ElementList::_get(int index)
 {
     if (index < 0 || index >= m_items.count())
         return nullptr;
 
     ElementListItem *item = m_items.at(index);
 
-    if (item->thread != nullptr)
+    if (item->thread() != nullptr)
         return nullptr;
 
-    item->thread = QThread::currentThread();
+    item->setThread(QThread::currentThread());
 
-    emit edited(index, item->element->visibleText(), true);
+    emit edited(index, item->element()->visibleText(), true);
 
-    return item->element;
+    return item->element();
 }
 
 
 
-bool ElementList::set(Element *element)
+bool ElementList::set(const ElementPtr &element)
 {
     QMutexLocker mutexLocker(&m_mutex);
 
@@ -134,14 +134,14 @@ bool ElementList::set(Element *element)
         return false;
 
     ElementListItem *item = m_items.at(index);
-    emit edited(index, item->element->visibleText(), item->thread != nullptr);
+    emit edited(index, item->element()->visibleText(), item->thread() != nullptr);
 
     return true;
 }
 
 
 
-bool ElementList::release(Element *element)
+bool ElementList::release(const ElementPtr &element)
 {
     return release(false, element);
 }
@@ -155,7 +155,7 @@ bool ElementList::releaseAll()
 
 
 
-bool ElementList::release(bool all, Element *element)
+bool ElementList::release(bool all, const ElementPtr &element)
 {
     QMutexLocker mutexLocker(&m_mutex);
 
@@ -165,9 +165,9 @@ bool ElementList::release(bool all, Element *element)
     for (int i = 0; i < m_items.count(); ++i) {
         ElementListItem *item = m_items.at(i);
 
-        if ((all || item->element == element) && item->thread == currentThread) {
-            item->thread = nullptr;
-            emit edited(i, item->element->visibleText(), false);
+        if ((all || item->element() == element) && item->thread() == currentThread) {
+            item->setThread(nullptr);
+            emit edited(i, item->element()->visibleText(), false);
 
             if (all)
                 released = true;
@@ -181,7 +181,7 @@ bool ElementList::release(bool all, Element *element)
 
 
 
-int ElementList::indexOf(Element *element) const
+int ElementList::indexOf(const ElementPtr &element) const
 {
     QMutexLocker mutexLocker(&m_mutex);
     return _indexOf(element);
@@ -189,10 +189,10 @@ int ElementList::indexOf(Element *element) const
 
 
 
-int ElementList::_indexOf(Element *element) const
+int ElementList::_indexOf(const ElementPtr &element) const
 {
     for (int i = 0; i < m_items.count(); ++i)
-        if (m_items.at(i)->element == element)
+        if (m_items.at(i)->element() == element)
             return i;
 
     return -1;
@@ -208,7 +208,7 @@ int ElementList::unusedElementIndex(UnusedElementType type) const
     QList<int> indexes;
 
     for (int i = 0; i < m_items.count(); ++i)
-        if (m_items.at(i)->thread == nullptr)
+        if (m_items.at(i)->thread() == nullptr)
             indexes.append(i);
 
     if (indexes.isEmpty())

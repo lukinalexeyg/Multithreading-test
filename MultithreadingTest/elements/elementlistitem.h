@@ -8,11 +8,16 @@
 class ElementListItem
 {
 public:
-    ElementListItem(Element *element, QThread *thread = nullptr);
-    ~ElementListItem();
+    ElementListItem(const ElementPtr &element, QThread *thread = nullptr);
 
-    Element *element;
-    QThread *thread;
+    const ElementPtr &element() const   { return m_element; }
+
+    const QThread* thread() const       { return m_thread; }
+    void setThread(QThread *thread)     { m_thread = thread; }
+
+private:
+    ElementPtr m_element;
+    QThread *m_thread;
 };
 
 #endif // ELEMENTLISTITEM_H

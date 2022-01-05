@@ -1,7 +1,7 @@
 #ifndef ELEMENT_H
 #define ELEMENT_H
 
-#include <QString>
+#include <QSharedPointer>
 
 class Element
 {
@@ -27,6 +27,8 @@ private:
     QString m_userText;
     int m_counterValue;
 };
+
+typedef QSharedPointer<Element> ElementPtr;
 
 #define ELEMENT_DECL(n) \
     class Element##n : public Element \

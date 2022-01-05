@@ -31,17 +31,17 @@ void Worker::appendElement()
 {
     const int variant = QRandomGenerator::global()->bounded(3);
 
-    Element *element = nullptr;
+    ElementPtr element = nullptr;
 
     switch (variant) {
         case 0:
-            element = new Element1;
+            element = QSharedPointer<Element1>::create();
             break;
         case 1:
-            element = new Element2;
+            element = QSharedPointer<Element2>::create();
             break;
         case 2:
-            element = new Element3;
+            element = QSharedPointer<Element3>::create();
             break;
     }
 
@@ -55,7 +55,7 @@ void Worker::appendElement()
 
 void Worker::editElement()
 {
-    Element *element = m_elementList->get(ElementList::Random);
+    const ElementPtr element = m_elementList->get(ElementList::Random);
 
     if (element != nullptr) {
         element->incCounter();

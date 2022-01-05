@@ -16,5 +16,6 @@ ElementModelItem::ElementModelItem(const QString &text, bool locked) : m_text(te
 
 void ElementModelItem::set(const QString &text, bool locked)
 {
-    m_text = text; m_locked = locked;
+    m_text = text;
+    m_locked = locked;
 }

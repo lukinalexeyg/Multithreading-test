@@ -72,7 +72,7 @@ MainWindow::~MainWindow()
 void MainWindow::onListViewPressed(const QModelIndex &index)
 {
     const int row = index.row();
-    Element *element = m_elementList->get(row);
+    const ElementPtr element = m_elementList->get(row);
 
     if (m_selectedElement == nullptr && element != nullptr)
         m_selectedElement = element;
@@ -130,17 +130,17 @@ void MainWindow::appendElement()
     if (execEditElementDialog(QStringLiteral("Добавление элемента"), QStringLiteral("Добавить"), userText) == QDialog::Accepted) {
         const int variant = QRandomGenerator::global()->bounded(3);
 
-        Element *element = nullptr;
+        ElementPtr element = nullptr;
 
         switch (variant) {
             case 0:
-                element = new Element1(userText);
+                element = QSharedPointer<Element1>::create(userText);
                 break;
             case 1:
-                element = new Element2(userText);
+                element = QSharedPointer<Element2>::create(userText);
                 break;
             case 2:
-                element = new Element3(userText);
+                element = QSharedPointer<Element3>::create(userText);
                 break;
         }
 

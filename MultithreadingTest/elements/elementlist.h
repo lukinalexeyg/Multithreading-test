@@ -25,21 +25,21 @@ public:
 
     int count() const;
 
-    void append(Element *element);
+    void append(const ElementPtr &element);
 
     bool remove(int index);
-    bool remove(Element *element);
+    bool remove(const ElementPtr &element);
     bool remove(UnusedElementType type);
 
-    Element *get(int index);
-    Element *get(UnusedElementType type);
+    ElementPtr get(int index);
+    ElementPtr get(UnusedElementType type);
 
-    bool set(Element *element);
+    bool set(const ElementPtr &element);
 
-    bool release(Element *element);
+    bool release(const ElementPtr &element);
     bool releaseAll();
 
-    int indexOf(Element *element) const;
+    int indexOf(const ElementPtr &element) const;
 
 signals:
     void appended(const QString &text);
@@ -52,9 +52,9 @@ private:
 
 private:
     bool _remove(int index, QThread *thread = nullptr);
-    Element *_get(int index);
-    bool release(bool all, Element *element);
-    int _indexOf(Element *element) const;
+    ElementPtr _get(int index);
+    bool release(bool all, const ElementPtr &element);
+    int _indexOf(const ElementPtr &element) const;
     int unusedElementIndex(UnusedElementType type) const;
 };
 
