@@ -56,8 +56,8 @@ HEADERS += \
     workermanager.h
 
 FORMS += \
-    editelementdialog.ui \
-    mainwindow.ui
+    ui/editelementdialog.ui \
+    ui/mainwindow.ui
 
 DESTDIR = bin
 MOC_DIR = moc
