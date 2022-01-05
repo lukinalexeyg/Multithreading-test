@@ -127,7 +127,7 @@ void MainWindow::appendElement()
 {
     QString userText;
 
-    if (execEditElementDialog(QStringLiteral("Добавление элемента"), QStringLiteral("Добавить"), userText) == QDialog::Accepted)
+    if (execEditElementDialog(QStringLiteral("Adding an element"), QStringLiteral("Add"), userText) == QDialog::Accepted)
         Worker::appendElement(m_elementList, userText);
 }
 
@@ -137,7 +137,7 @@ void MainWindow::editElement()
 {
     QString userText;
 
-    if (execEditElementDialog(QStringLiteral("Редактирование элемента"), QStringLiteral("Изменить"), userText) == QDialog::Accepted) {
+    if (execEditElementDialog(QStringLiteral("Editing an element"), QStringLiteral("Edit"), userText) == QDialog::Accepted) {
         m_selectedElement->setUserText(userText);
         m_elementList->set(m_selectedElement);
     }
@@ -155,7 +155,7 @@ bool MainWindow::execEditElementDialog(const QString &title, const QString &okBu
     if (m_selectedElement != nullptr)
         editElementDialogUi->textEdit->setText(m_selectedElement->userText());
     editElementDialogUi->buttonBox->button(QDialogButtonBox::Ok)->setText(okButtonText);
-    editElementDialogUi->buttonBox->button(QDialogButtonBox::Cancel)->setText(QStringLiteral("Отмена"));
+    editElementDialogUi->buttonBox->button(QDialogButtonBox::Cancel)->setText(QStringLiteral("Cancel"));
 
     const bool dialogResult = dialog->exec();
     userText = editElementDialogUi->textEdit->toPlainText().simplified();
@@ -171,9 +171,9 @@ bool MainWindow::execEditElementDialog(const QString &title, const QString &okBu
 void MainWindow::removeElement()
 {
     QMessageBox messageBox;
-    messageBox.setWindowTitle(QStringLiteral("Удаление элемента"));
+    messageBox.setWindowTitle(QStringLiteral("Deleting an element"));
     messageBox.setIcon(QMessageBox::Question);
-    messageBox.setText(QStringLiteral("Удалить выбранный элемент из списка?"));
+    messageBox.setText(QStringLiteral("Delete the selected element from the list?"));
     messageBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     messageBox.setDefaultButton(QMessageBox::Ok);
 

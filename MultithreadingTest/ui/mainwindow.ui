@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QGroupBox" name="groupBox_elements">
       <property name="title">
-       <string>Элементы</string>
+       <string>Elements</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
@@ -29,28 +29,28 @@
          <item>
           <widget class="QPushButton" name="pushButton_appendElement">
            <property name="text">
-            <string>Добавить</string>
+            <string>Add</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_editElement">
            <property name="text">
-            <string>Редактировать</string>
+            <string>Edit</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_removeElement">
            <property name="text">
-            <string>Удалить</string>
+            <string>Delete</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_clearSelection">
            <property name="text">
-            <string>Сброс</string>
+            <string>Reset</string>
            </property>
           </widget>
          </item>
@@ -72,7 +72,7 @@
        <item row="1" column="0">
         <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>Для редактирования или удаления выберите элемент. Для отмены выбора нажмите Сброс или нажмите на элемент еще раз.</string>
+          <string>To edit or delete an element, click on it and click on the corresponding button. To cancel the selection, click on the Reset button or click on the element again.</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -87,7 +87,7 @@
       <item>
        <widget class="QGroupBox" name="groupBox_settings">
         <property name="title">
-         <string>Настройки</string>
+         <string>Settings</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
          <item row="0" column="0">
@@ -97,7 +97,7 @@
              <item row="0" column="0">
               <widget class="QLabel" name="label">
                <property name="text">
-                <string>Кол-во потоков</string>
+                <string>Threads count</string>
                </property>
               </widget>
              </item>
@@ -114,7 +114,7 @@
              <item row="1" column="0">
               <widget class="QLabel" name="label_2">
                <property name="text">
-                <string>Задержка</string>
+                <string>Idle duration</string>
                </property>
               </widget>
              </item>
@@ -135,14 +135,14 @@
          <item row="1" column="0">
           <widget class="QPushButton" name="pushButton_setSettings">
            <property name="text">
-            <string>Установить</string>
+            <string>Set</string>
            </property>
           </widget>
          </item>
          <item row="2" column="0">
           <widget class="QPushButton" name="pushButton_resetSettings">
            <property name="text">
-            <string>По умолчанию</string>
+            <string>Default</string>
            </property>
           </widget>
          </item>
@@ -160,21 +160,21 @@
            <item>
             <widget class="QPushButton" name="pushButton_start">
              <property name="text">
-              <string>Старт</string>
+              <string>Start</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QPushButton" name="pushButton_stop">
              <property name="text">
-              <string>Стоп</string>
+              <string>Stop</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QPushButton" name="pushButton_exit">
              <property name="text">
-              <string>Выход</string>
+              <string>Exit</string>
              </property>
             </widget>
            </item>
