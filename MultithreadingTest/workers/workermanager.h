@@ -19,7 +19,7 @@ public:
     void stop();
 
 public:
-    static constexpr int defaultWorkersCount = 3;
+    static constexpr int defaultWorkersCount = 5;
     static constexpr int maxWorkersCount = 100;
 
     QThread *m_thread;
