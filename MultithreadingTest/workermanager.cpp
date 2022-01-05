@@ -55,6 +55,13 @@ void WorkerManager::set(int count, int duration)
 
 
 
+void WorkerManager::reset()
+{
+    set(WORKERS_COUNT, WORKER_IDLE_DURATION);
+}
+
+
+
 void WorkerManager::start()
 {
     m_active = true;

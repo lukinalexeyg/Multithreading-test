@@ -55,7 +55,7 @@ void Worker::appendElement()
 
 void Worker::editElement()
 {
-    const ElementPtr element = m_elementList->get(ElementList::Random);
+    const ElementPtr element = m_elementList->get(ElementList::UnusedElementType::Random);
 
     if (element != nullptr) {
         element->incCounter();
@@ -74,7 +74,7 @@ void Worker::editElement()
 
 void Worker::removeElement()
 {
-    m_elementList->remove(ElementList::Random);
+    m_elementList->remove(ElementList::UnusedElementType::Random);
     sleep();
     invokeAction();
 }

@@ -16,7 +16,7 @@ public:
     ~WorkerManager();
 
     Q_SLOT void set(int count, int duration);
-    Q_SLOT void reset() { set(WORKERS_COUNT, WORKER_IDLE_DURATION); }
+    Q_SLOT void reset();
 
     void start();
     void stop();

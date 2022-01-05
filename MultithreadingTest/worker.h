@@ -12,9 +12,11 @@ class Worker : public QObject
 
 public:
     explicit Worker(ElementList *elementList, QObject *parent = nullptr);
+
     Q_SLOT void start();
     void stop()                          { m_active = false; }
     void setIdleDuration(int duration)   { m_idleDuration = duration; }
+
     static void stopThread(QThread *thread, ulong time = ULONG_MAX);
 
 public:
