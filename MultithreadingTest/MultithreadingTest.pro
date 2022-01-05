@@ -37,17 +37,14 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 SOURCES += \
     log.cpp \
     main.cpp \
-    mainwindow.cpp \
-    worker.cpp \
-    workermanager.cpp
+    mainwindow.cpp
 
 HEADERS += \
     log.h \
-    mainwindow.h \
-    worker.h \
-    workermanager.h
+    mainwindow.h
 
 include(elements/Elements.pri)
+include(workers/Workers.pri)
 
 FORMS += \
     ui/editelementdialog.ui \
