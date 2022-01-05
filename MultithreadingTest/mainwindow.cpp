@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setElementButtonsEnabled(false);
 
-    m_elementList = new ElementList(this);
+    m_elementList = ElementListPtr::create();
     m_elementModel = new ElementModel(this);
     m_elementDelegate = new ElementDelegate;
 
@@ -33,9 +33,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->listView, &QListView::pressed, this, &MainWindow::onListViewPressed);
 
-    connect(m_elementList, &ElementList::appended,  m_elementModel, &ElementModel::append);
-    connect(m_elementList, &ElementList::edited,    m_elementModel, &ElementModel::edit);
-    connect(m_elementList, &ElementList::removed,   m_elementModel, &ElementModel::remove);
+    connect(m_elementList.get(), &ElementList::appended,  m_elementModel, &ElementModel::append);
+    connect(m_elementList.get(), &ElementList::edited,    m_elementModel, &ElementModel::edit);
+    connect(m_elementList.get(), &ElementList::removed,   m_elementModel, &ElementModel::remove);
 
     m_workerManager = new WorkerManager(m_elementList);
     m_workerManager->m_thread = new QThread(this);
@@ -127,25 +127,8 @@ void MainWindow::appendElement()
 {
     QString userText;
 
-    if (execEditElementDialog(QStringLiteral("Добавление элемента"), QStringLiteral("Добавить"), userText) == QDialog::Accepted) {
-        const int variant = QRandomGenerator::global()->bounded(3);
-
-        ElementPtr element = nullptr;
-
-        switch (variant) {
-            case 0:
-                element = QSharedPointer<Element1>::create(userText);
-                break;
-            case 1:
-                element = QSharedPointer<Element2>::create(userText);
-                break;
-            case 2:
-                element = QSharedPointer<Element3>::create(userText);
-                break;
-        }
-
-        m_elementList->append(element);
-    }
+    if (execEditElementDialog(QStringLiteral("Добавление элемента"), QStringLiteral("Добавить"), userText) == QDialog::Accepted)
+        Worker::appendElement(m_elementList, userText);
 }
 
 

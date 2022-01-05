@@ -9,7 +9,7 @@ class WorkerManager : public QObject
     Q_OBJECT
 
 public:
-    explicit WorkerManager(ElementList *elementList, QObject *parent = nullptr);
+    explicit WorkerManager(const ElementListPtr &elementList, QObject *parent = nullptr);
     ~WorkerManager();
 
     Q_SLOT void set(int count, int duration);
@@ -22,11 +22,10 @@ public:
     static constexpr int defaultWorkersCount = 3;
     static constexpr int maxWorkersCount = 100;
 
-public:
     QThread *m_thread;
 
 private:
-    ElementList *m_elementList;
+    ElementListPtr m_elementList;
     QList<Worker*> m_workers;
     bool m_active;
 };

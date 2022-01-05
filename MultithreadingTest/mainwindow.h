@@ -22,7 +22,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    ElementList *m_elementList;
+    ElementListPtr m_elementList;
     ElementModel *m_elementModel;
     ElementDelegate *m_elementDelegate;
     WorkerManager *m_workerManager;

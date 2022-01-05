@@ -58,4 +58,6 @@ private:
     int unusedElementIndex(UnusedElementType type) const;
 };
 
+typedef QSharedPointer<ElementList> ElementListPtr;
+
 #endif // LIST_H

@@ -4,7 +4,7 @@
 
 
 
-WorkerManager::WorkerManager(ElementList *elementList, QObject *parent) :
+WorkerManager::WorkerManager(const ElementListPtr &elementList, QObject *parent) :
     QObject(parent),
     m_elementList(elementList),
     m_active(false)

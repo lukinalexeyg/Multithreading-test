@@ -7,7 +7,7 @@
 
 
 
-Worker::Worker(ElementList *elementList, QObject *parent) :
+Worker::Worker(const ElementListPtr &elementList, QObject *parent) :
     QObject(parent),
     m_elementList(elementList),
     m_idleDuration(defaultIdleDuration),
@@ -29,26 +29,33 @@ void Worker::start()
 
 void Worker::appendElement()
 {
+    appendElement(m_elementList);
+
+    sleep();
+    invokeAction();
+}
+
+
+
+void Worker::appendElement(const ElementListPtr &elementList, const QString &userText)
+{
     const int variant = QRandomGenerator::global()->bounded(3);
 
     ElementPtr element = nullptr;
 
     switch (variant) {
         case 0:
-            element = QSharedPointer<Element1>::create();
+            element = QSharedPointer<Element1>::create(userText);
             break;
         case 1:
-            element = QSharedPointer<Element2>::create();
+            element = QSharedPointer<Element2>::create(userText);
             break;
         case 2:
-            element = QSharedPointer<Element3>::create();
+            element = QSharedPointer<Element3>::create(userText);
             break;
     }
 
-    m_elementList->append(element);
-
-    sleep();
-    invokeAction();
+    elementList->append(element);
 }
 
 
