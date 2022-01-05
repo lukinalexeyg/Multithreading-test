@@ -31,7 +31,7 @@ void ElementList::append(Element *element)
 {
     QMutexLocker mutexLocker(&m_mutex);
 
-    Item *item = new Item(element);
+    ElementListItem *item = new ElementListItem(element);
     m_items.append(item);
 
     emit appended(element->visibleText());
@@ -111,7 +111,7 @@ Element *ElementList::_get(int index)
     if (index < 0 || index >= m_items.count())
         return nullptr;
 
-    Item *item = m_items.at(index);
+    ElementListItem *item = m_items.at(index);
 
     if (item->thread != nullptr)
         return nullptr;
@@ -133,10 +133,24 @@ bool ElementList::set(Element *element)
     if (index < 0)
         return false;
 
-    Item *item = m_items.at(index);
+    ElementListItem *item = m_items.at(index);
     emit edited(index, item->element->visibleText(), item->thread != nullptr);
 
     return true;
+}
+
+
+
+bool ElementList::release(Element *element)
+{
+    return release(false, element);
+}
+
+
+
+bool ElementList::releaseAll()
+{
+    return release(true, nullptr);
 }
 
 
@@ -149,7 +163,7 @@ bool ElementList::release(bool all, Element *element)
     bool released = false;
 
     for (int i = 0; i < m_items.count(); ++i) {
-        Item *item = m_items.at(i);
+        ElementListItem *item = m_items.at(i);
 
         if ((all || item->element == element) && item->thread == currentThread) {
             item->thread = nullptr;

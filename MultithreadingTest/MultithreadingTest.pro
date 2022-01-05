@@ -35,10 +35,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    element.cpp \
-    elementdelegate.cpp \
-    elementlist.cpp \
-    elementmodel.cpp \
     log.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -46,14 +42,12 @@ SOURCES += \
     workermanager.cpp
 
 HEADERS += \
-    element.h \
-    elementdelegate.h \
-    elementlist.h \
-    elementmodel.h \
     log.h \
     mainwindow.h \
     worker.h \
     workermanager.h
+
+include(elements/Elements.pri)
 
 FORMS += \
     ui/editelementdialog.ui \

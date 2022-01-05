@@ -1,26 +1,9 @@
 #ifndef ELEMENTMODEL_H
 #define ELEMENTMODEL_H
 
+#include "elementmodelitem.h"
+
 #include <QAbstractListModel>
-
-
-
-class ElementModelItem {
-public:
-    ElementModelItem() : m_text(QString()), m_locked(false) {};
-    ElementModelItem(const QString &text, bool locked) : m_text(text), m_locked(locked) {};
-    void set(const QString &text, bool locked) { m_text = text; m_locked = locked; };
-    QString text() const    { return m_text; }
-    bool locked() const     { return m_locked; }
-
-private:
-    QString m_text;
-    bool m_locked;
-};
-
-Q_DECLARE_METATYPE(ElementModelItem*)
-
-
 
 class ElementModel : public QAbstractListModel
 {
