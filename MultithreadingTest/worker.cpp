@@ -10,7 +10,7 @@
 Worker::Worker(ElementList *elementList, QObject *parent) :
     QObject(parent),
     m_elementList(elementList),
-    m_idleDuration(WORKER_IDLE_DURATION),
+    m_idleDuration(defaultIdleDuration),
     m_active(false)
 {
 }

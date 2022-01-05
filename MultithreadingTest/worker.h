@@ -3,9 +3,6 @@
 
 #include "elementlist.h"
 
-static constexpr int WORKER_IDLE_DURATION = 1000;
-static constexpr int MAX_WORKER_IDLE_DURATION = 60000;
-
 class Worker : public QObject
 {
     Q_OBJECT
@@ -18,6 +15,10 @@ public:
     void setIdleDuration(int duration)   { m_idleDuration = duration; }
 
     static void stopThread(QThread *thread, ulong time = ULONG_MAX);
+
+public:
+    static constexpr int defaultIdleDuration = 1000;
+    static constexpr int maxIdleDuration = 60000;
 
 public:
     QThread *m_thread;

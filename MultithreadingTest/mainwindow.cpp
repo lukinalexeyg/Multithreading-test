@@ -17,10 +17,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setWindowTitle(qAppName());
 
-    ui->spinBox_threadsCount->setMaximum(MAX_WORKERS_COUNT);
-    ui->spinBox_threadsCount->setValue(WORKERS_COUNT);
-    ui->spinBox_idleDuration->setMaximum(MAX_WORKER_IDLE_DURATION);
-    ui->spinBox_idleDuration->setValue(WORKER_IDLE_DURATION);
+    ui->spinBox_threadsCount->setMaximum(WorkerManager::maxWorkersCount);
+    ui->spinBox_threadsCount->setValue(WorkerManager::defaultWorkersCount);
+    ui->spinBox_idleDuration->setMaximum(Worker::maxIdleDuration);
+    ui->spinBox_idleDuration->setValue(Worker::defaultIdleDuration);
 
     setElementButtonsEnabled(false);
 
@@ -116,8 +116,8 @@ void MainWindow::setSettings()
 
 void MainWindow::resetSettings()
 {
-    ui->spinBox_threadsCount->setValue(WORKERS_COUNT);
-    ui->spinBox_idleDuration->setValue(WORKER_IDLE_DURATION);
+    ui->spinBox_threadsCount->setValue(WorkerManager::defaultWorkersCount);
+    ui->spinBox_idleDuration->setValue(Worker::defaultIdleDuration);
     QMetaObject::invokeMethod(m_workerManager, "reset", Qt::ConnectionType::QueuedConnection);
 }
 

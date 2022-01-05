@@ -4,9 +4,6 @@
 #include "elementlist.h"
 #include "worker.h"
 
-static constexpr int WORKERS_COUNT = 3;
-static constexpr int MAX_WORKERS_COUNT = 100;
-
 class WorkerManager : public QObject
 {
     Q_OBJECT
@@ -20,6 +17,10 @@ public:
 
     void start();
     void stop();
+
+public:
+    static constexpr int defaultWorkersCount = 3;
+    static constexpr int maxWorkersCount = 100;
 
 public:
     QThread *m_thread;

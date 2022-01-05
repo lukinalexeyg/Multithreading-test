@@ -57,7 +57,7 @@ void WorkerManager::set(int count, int duration)
 
 void WorkerManager::reset()
 {
-    set(WORKERS_COUNT, WORKER_IDLE_DURATION);
+    set(defaultWorkersCount, Worker::defaultIdleDuration);
 }
 
 
