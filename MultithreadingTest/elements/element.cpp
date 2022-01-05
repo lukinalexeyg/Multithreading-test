@@ -11,7 +11,7 @@ Element::Element(const QString &userText) :
 
 
 
-QString Element::visibleText() const
+QString Element::displayedText() const
 {
     return QString("%1 %2 %3")
             .arg(m_className, m_userText)

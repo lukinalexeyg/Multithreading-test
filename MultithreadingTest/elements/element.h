@@ -16,7 +16,7 @@ public:
     int counterValue() const                { return m_counterValue; }
     void incCounter()                       { ++m_counterValue; }
 
-    QString visibleText() const;
+    QString displayedText() const;
 
 private:
     friend class Element1;

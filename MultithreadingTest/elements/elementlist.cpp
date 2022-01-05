@@ -34,7 +34,7 @@ void ElementList::append(const ElementPtr &element)
     ElementListItem *item = new ElementListItem(element);
     m_items.append(item);
 
-    emit appended(element->visibleText());
+    emit appended(element->displayedText());
 }
 
 
@@ -118,7 +118,7 @@ ElementPtr ElementList::_get(int index)
 
     item->setThread(QThread::currentThread());
 
-    emit edited(index, item->element()->visibleText(), true);
+    emit edited(index, item->element()->displayedText(), true);
 
     return item->element();
 }
@@ -134,7 +134,7 @@ bool ElementList::set(const ElementPtr &element)
         return false;
 
     ElementListItem *item = m_items.at(index);
-    emit edited(index, item->element()->visibleText(), item->thread() != nullptr);
+    emit edited(index, item->element()->displayedText(), item->thread() != nullptr);
 
     return true;
 }
@@ -167,7 +167,7 @@ bool ElementList::release(bool all, const ElementPtr &element)
 
         if ((all || item->element() == element) && item->thread() == currentThread) {
             item->setThread(nullptr);
-            emit edited(i, item->element()->visibleText(), false);
+            emit edited(i, item->element()->displayedText(), false);
 
             if (all)
                 released = true;
