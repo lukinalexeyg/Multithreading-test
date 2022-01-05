@@ -133,15 +133,15 @@ void MainWindow::appendElement()
         Element *element = nullptr;
 
         switch (variant) {
-        case 0:
-            element = new Element1(userText);
-            break;
-        case 1:
-            element = new Element2(userText);
-            break;
-        case 2:
-            element = new Element3(userText);
-            break;
+            case 0:
+                element = new Element1(userText);
+                break;
+            case 1:
+                element = new Element2(userText);
+                break;
+            case 2:
+                element = new Element3(userText);
+                break;
         }
 
         m_elementList->append(element);

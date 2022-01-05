@@ -6,7 +6,7 @@ CONFIG(release, debug|release) {
     CONFIG += optimize_full
 }
 
-TARGET = Multithreading_test
+TARGET = MultithreadingTest
 
 VERSION = 1.0.1
 
@@ -18,7 +18,6 @@ win32-msvc* {
 
 QMAKE_TARGET = $${TARGET}
 QMAKE_TARGET_PRODUCT = $${TARGET}
-QMAKE_TARGET_DESCRIPTION = "Multithreading_test"
 QMAKE_TARGET_COPYRIGHT = "Copyright (c) 2021 Alexey Lukin"
 
 DEFINES += APP_NAME=\"\\\"$$QMAKE_TARGET_PRODUCT\\\"\"
