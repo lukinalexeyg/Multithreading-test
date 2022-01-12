@@ -1,6 +1,6 @@
 # MultithreadingTest
 ### Elements
-Class Element and its inheritors Element1, Element2, Element3 get/sets such data:
+Class Element and its inheritors Element1, Element2, Element3 get/set such data:
 - Class name (read only)
 - User text (read and write)
 - Counter (read and write)
