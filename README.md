@@ -14,3 +14,5 @@ ElementList is a thread-safe list of elements, whose elements can be instances o
 - If the action "Delete" is selected, then it randomly selects an element not occupied by the user or another worker and deletes the element from the ElementList. If there are no elements or no free element, then do nothing.
 - During each action, a worker sleeps for n ms (default is 1000).
 - There are created as many workers as specified in the interface (default is 5).
+### Screenshot
+![](MultithreadingTest.png)
