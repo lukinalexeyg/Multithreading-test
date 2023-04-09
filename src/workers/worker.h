@@ -10,11 +10,15 @@ class Worker : public QObject
 public:
     explicit Worker(const ElementListPtr &elementList, QObject *parent = nullptr);
 
+public:
     Q_SLOT void start();
-    void stop()                          { m_active = false; }
-    void setIdleDuration(int duration)   { m_idleDuration = duration; }
+
+    void stop() { m_active = false; }
+
+    void setIdleDuration(const int duration) { m_idleDuration = duration; }
 
     static void appendElement(const ElementListPtr &elementList, const QString &userText = QString());
+
     static void stopThread(QThread *thread, ulong time = ULONG_MAX);
 
 public:
@@ -37,10 +41,15 @@ private:
 
 private:
     void appendElement();
+
     void editElement();
+
     void removeElement();
+
     void sleep();
+
     void invokeAction();
+
     void doAction();
 };
 

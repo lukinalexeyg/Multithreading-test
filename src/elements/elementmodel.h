@@ -9,10 +9,14 @@ class ElementModel : public QAbstractListModel
 {
 public:
     explicit ElementModel(QObject *parent = nullptr);
+
     ~ElementModel();
 
+public:
     void append(const QString &text);
+
     void edit(int row, const QString &text, bool locked);
+
     void remove(int row);
 
 private:
@@ -20,7 +24,9 @@ private:
 
 private:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
+
     bool isRowValid(int row) const;
 };
 

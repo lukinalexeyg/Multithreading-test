@@ -20,7 +20,7 @@ ElementModel::~ElementModel()
 
 void ElementModel::append(const QString &text)
 {
-    FUNCTION_LOG
+    FUNCTION_LOG;
 
     ElementModelItem *item = new ElementModelItem(text, false);
     m_items.append(item);
@@ -31,9 +31,9 @@ void ElementModel::append(const QString &text)
 
 
 
-void ElementModel::edit(int row, const QString &text, bool locked)
+void ElementModel::edit(const int row, const QString &text, const bool locked)
 {
-    FUNCTION_LOG
+    FUNCTION_LOG;
 
     if (!isRowValid(row))
         return;
@@ -45,9 +45,9 @@ void ElementModel::edit(int row, const QString &text, bool locked)
 
 
 
-void ElementModel::remove(int index)
+void ElementModel::remove(const int index)
 {
-    FUNCTION_LOG
+    FUNCTION_LOG;
 
     if (!isRowValid(index))
         return;
@@ -59,7 +59,7 @@ void ElementModel::remove(int index)
 
 
 
-QVariant ElementModel::data(const QModelIndex &index, int role) const
+QVariant ElementModel::data(const QModelIndex &index, const int role) const
 {
     const int row = index.row();
 
@@ -84,7 +84,7 @@ int ElementModel::rowCount(const QModelIndex &parent) const
 
 
 
-bool ElementModel::isRowValid(int row) const
+bool ElementModel::isRowValid(const int row) const
 {
     return row >= 0 && row < m_items.count();
 }

@@ -122,7 +122,7 @@ void Worker::doAction()
 
 
 
-void Worker::stopThread(QThread *thread, ulong time)
+void Worker::stopThread(QThread *thread, const ulong time)
 {
     thread->quit();
 

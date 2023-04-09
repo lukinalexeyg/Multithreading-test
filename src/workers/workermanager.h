@@ -10,12 +10,16 @@ class WorkerManager : public QObject
 
 public:
     explicit WorkerManager(const ElementListPtr &elementList, QObject *parent = nullptr);
+
     ~WorkerManager();
 
+public:
     Q_SLOT void set(int count, int duration);
+
     Q_SLOT void reset();
 
     void start();
+
     void stop();
 
 public:

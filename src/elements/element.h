@@ -8,12 +8,15 @@ class Element
 public:
     Element(const QString &userText = QString());
 
+public:
     QString className() const               { return m_className; }
 
     QString userText() const                { return m_userText; }
+
     void setUserText(const QString &text)   { m_userText = text; }
 
     int counterValue() const                { return m_counterValue; }
+
     void incCounter()                       { ++m_counterValue; }
 
     QString displayedText() const;

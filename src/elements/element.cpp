@@ -13,7 +13,7 @@ Element::Element(const QString &userText) :
 
 QString Element::displayedText() const
 {
-    return QString("%1 %2 %3")
+    return QStringLiteral("%1 %2 %3")
             .arg(m_className, m_userText)
             .arg(m_counterValue);
 }

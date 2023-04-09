@@ -21,7 +21,7 @@ WorkerManager::~WorkerManager()
 
 
 
-void WorkerManager::set(int count, int duration)
+void WorkerManager::set(const int count, const int duration)
 {
     const int dif = count - m_workers.count();
 

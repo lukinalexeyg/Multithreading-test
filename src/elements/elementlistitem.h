@@ -10,9 +10,11 @@ class ElementListItem
 public:
     ElementListItem(const ElementPtr &element, QThread *thread = nullptr);
 
+public:
     const ElementPtr &element() const   { return m_element; }
 
     const QThread* thread() const       { return m_thread; }
+
     void setThread(QThread *thread)     { m_thread = thread; }
 
 private:

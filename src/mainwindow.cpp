@@ -203,7 +203,7 @@ void MainWindow::clearSelection()
 
 
 
-void MainWindow::setElementButtonsEnabled(bool enabled)
+void MainWindow::setElementButtonsEnabled(const bool enabled)
 {
     ui->pushButton_editElement->setEnabled(enabled);
     ui->pushButton_removeElement->setEnabled(enabled);

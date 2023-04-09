@@ -39,7 +39,7 @@ void ElementList::append(const ElementPtr &element)
 
 
 
-bool ElementList::remove(int index)
+bool ElementList::remove(const int index)
 {
     QMutexLocker mutexLocker(&m_mutex);
     return _remove(index);
@@ -58,7 +58,7 @@ bool ElementList::remove(const ElementPtr &element)
 
 
 
-bool ElementList::remove(UnusedElementType type)
+bool ElementList::remove(const UnusedElementType type)
 {
     QMutexLocker mutexLocker(&m_mutex);
 
@@ -69,7 +69,7 @@ bool ElementList::remove(UnusedElementType type)
 
 
 
-bool ElementList::_remove(int index, QThread *thread)
+bool ElementList::_remove(const int index, QThread *thread)
 {
     if (index < 0 || index >= m_items.count())
         return false;
@@ -87,7 +87,7 @@ bool ElementList::_remove(int index, QThread *thread)
 
 
 
-ElementPtr ElementList::get(int index)
+ElementPtr ElementList::get(const int index)
 {
     QMutexLocker mutexLocker(&m_mutex);
     return _get(index);
@@ -95,7 +95,7 @@ ElementPtr ElementList::get(int index)
 
 
 
-ElementPtr ElementList::get(UnusedElementType type)
+ElementPtr ElementList::get(const UnusedElementType type)
 {
     QMutexLocker mutexLocker(&m_mutex);
 
@@ -106,7 +106,7 @@ ElementPtr ElementList::get(UnusedElementType type)
 
 
 
-ElementPtr ElementList::_get(int index)
+ElementPtr ElementList::_get(const int index)
 {
     if (index < 0 || index >= m_items.count())
         return nullptr;
@@ -200,7 +200,7 @@ int ElementList::_indexOf(const ElementPtr &element) const
 
 
 
-int ElementList::unusedElementIndex(UnusedElementType type) const
+int ElementList::unusedElementIndex(const UnusedElementType type) const
 {
     if (m_items.isEmpty())
         return -1;

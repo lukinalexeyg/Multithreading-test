@@ -18,6 +18,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+
     ~MainWindow();
 
 private:
@@ -32,12 +33,17 @@ private:
     void onListViewPressed(const QModelIndex &index);
 
     void setSettings();
+
     void resetSettings();
 
     void appendElement();
+
     void editElement();
+
     bool execEditElementDialog(const QString &title, const QString &okButtonText, QString &userText);
+
     void removeElement();
+
     void clearSelection();
 
     void setElementButtonsEnabled(bool enabled);
